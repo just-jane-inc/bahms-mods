@@ -12,7 +12,9 @@ namespace JustColors {
 
         [HarmonyPostfix]
         private static void AfterCreatingLine(Player player, ref Line2D __result) {
-            __result.DefaultColor = MyModConfig.ConfiguredColor;
+          if (UserColorMap.TryGetValue(player.NetId, out Color color)) {
+            __result.DefaultColor = color;
+          }
         }
     }
 }
