@@ -38,15 +38,15 @@
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
         <!-- Generates a .pck file when building if only using simple assets. May not work on all setups. Uncomment to test. -->
         <!-- <PackageReference Include="BSchneppe.StS2.PckPacker" Version="0.1.1" PrivateAssets="All" /> -->
-        <AdditionalFiles Include="just_colors/localization/**/*.json"/> <!-- Used by analyzer -->
+        <AdditionalFiles Include="JustColors/localization/**/*.json"/> <!-- Used by analyzer -->
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="just_colors/**" />
+        <Compile Remove="JustColors/**" />
         <Compile Remove="materials/**" />
         <Compile Remove="shaders/**" />
         <Compile Remove="images/**" />
-        <EmbeddedResource Remove="just_colors/**" />
+        <EmbeddedResource Remove="JustColors/**" />
         <EmbeddedResource Remove="materials/**" />
         <EmbeddedResource Remove="shaders/**" />
         <EmbeddedResource Remove="images/**" />
@@ -55,9 +55,9 @@
     <ItemGroup>
         <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
         <None Include=".gitignore" />
-        <None Include="just_colors.json" />
+        <None Include="JustColors.json" />
         <None Include="project.godot"/>
-        <None Include="just_colors/**" />
+        <None Include="JustColors/**" />
     </ItemGroup>
     
     <Target Name="CheckDependencyPaths" >
