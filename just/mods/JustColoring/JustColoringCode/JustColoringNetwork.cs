@@ -40,12 +40,21 @@ namespace JustColoring.JustColoringCode
                 return;
             }
 
-            if (_netService is not null)
+            if (instance.NetService is null)
             {
                 return;
             }
 
-            if (instance.NetService is null)
+            if (_netService is not null && instance.NetService != _netService)
+            {
+                MainFile.Logger.Info("instance netservice is different from currently tracked one");
+                _netService?.UnregisterMessageHandler<PlayerColorMessage>(HandlePlayerColorMessage);
+                _netService?.UnregisterMessageHandler<PlayerConnectedMessage>(HandlePlayerConnectedMessage);
+                _netService = null;
+                return;
+            }
+
+            if (_netService is not null)
             {
                 return;
             }
@@ -86,12 +95,13 @@ namespace JustColoring.JustColoringCode
 
         private void HandlePlayerConnectedMessage(PlayerConnectedMessage message, ulong senderId)
         {
+            MainFile.Logger.Info($"received player connect from [{GetPlayerName(senderId)}]");
             SendConfigurationUpdate();
         }
 
         private void HandlePlayerColorMessage(PlayerColorMessage message, ulong senderId)
         {
-            MainFile.Logger.Info($"message received from [{senderId}]");
+            MainFile.Logger.Info($"received updated color message received from [{GetPlayerName(senderId)}]");
             Color color = Color.FromString(message.Configuration.Color, default);
             MapDrawingColorPatch.UserColorMap[senderId] = color;
         }
