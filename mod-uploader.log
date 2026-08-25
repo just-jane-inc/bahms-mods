@@ -1,0 +1,19 @@
+Initializing Steam
+=================
+By submitting 'JustColoringDev' to the workshop,
+you agree to the Steam Workshop terms of service:
+https://steamcommunity.com/sharedfiles/workshoplegalagreement
+=================
+Logged in as user 'jane'.
+Using workshop item ID 3788858401 from mod_id.txt
+Querying existing workshop item details... 
+Uploading 'JustColoringDev' to the steam workshop with item ID 3788858401...
+Status: k_EItemUpdateStatusPreparingContent
+Status: k_EItemUpdateStatusUploadingContent
+Status: k_EItemUpdateStatusUploadingContent, bytes processed: 0/43856 (0.00%)
+Status: k_EItemUpdateStatusUploadingContent, bytes processed: 20992/43856 (47.87%)
+Status: k_EItemUpdateStatusUploadingContent, bytes processed: 43856/43856 (100.00%)
+Status: k_EItemUpdateStatusCommittingChanges
+Status: k_EItemUpdateStatusInvalid
+No modifications were made to dependencies.
+Successfully uploaded 'JustColoringDev' to the workshop with id 3788858401! Browsing to the item in Steam.
