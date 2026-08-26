@@ -43,45 +43,4 @@ namespace JustColoring.JustColoringCode
         }
     }
 
-    public record PlayerConnectedPayload
-    {
-        public string Message { get; init; } = "nya";
-    }
-
-    public struct PlayerConnectedMessage : INetMessage, IPacketSerializable
-    {
-        public PlayerConnectedMessage()
-        {
-            Payload = new();
-        }
-
-        public PlayerConnectedPayload Payload;
-
-        public bool ShouldBroadcast => true;
-
-        public bool ShouldBuffer => false;
-
-        public NetTransferMode Mode => NetTransferMode.Reliable;
-
-        public LogLevel LogLevel => LogLevel.Info;
-
-        public void Serialize(PacketWriter writer)
-        {
-            writer.WriteString(JsonSerializer.Serialize(Payload));
-        }
-
-        public void Deserialize(PacketReader reader)
-        {
-            if (reader is null)
-            {
-                throw new ArgumentNullException(nameof(reader));
-            }
-
-            string message = reader.ReadString();
-            if (!string.IsNullOrWhiteSpace(message))
-            {
-                Payload = JsonSerializer.Deserialize<PlayerConnectedPayload>(message);
-            }
-        }
-    }
 }

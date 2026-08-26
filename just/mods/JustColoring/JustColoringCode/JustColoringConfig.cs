@@ -7,11 +7,11 @@ namespace JustColoring.JustColoringCode
     // override for a players color
     internal class JustColorsConfig : SimpleModConfig
     {
-        private static string _drawingColor = "#deadffff";
+        private static Color _drawingColor = Color.Color8(0xDE, 0xAD, 0xFF);
 
         [ConfigSection("Drawing Color Settings")]
         [ConfigColorPicker]
-        public static string DrawingColorThing
+        public static Color DrawingColorThing
         {
             get => _drawingColor;
             set
@@ -19,21 +19,9 @@ namespace JustColoring.JustColoringCode
                 if (value == _drawingColor)
                     return;
 
-                Color color = Color.FromString(value, default);
                 _drawingColor = value;
-                MapDrawingColorPatch.UserColorMap[1] = color;
+                MapDrawingColorPatch.UserColorMap[1] = value;
             }
-        }
-
-        public static void UpdateColor(Color color)
-        {
-            DrawingColorThing = color.ToHtml();
-            NetworkIO.SendConfigurationUpdate();
-        }
-
-        public static Color ConfiguredColor
-        {
-            get => Color.FromString(DrawingColorThing, Color.Color8(0xDE, 0xAD, 0xFF, 0xFF));
         }
     }
 }

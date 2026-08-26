@@ -69,7 +69,7 @@ namespace JustColoring.JustColoringCode
                 );
 
             paletteIcon.SelfModulate =
-                JustColorsConfig.ConfiguredColor;
+                JustColorsConfig.DrawingColorThing;
 
             paletteIcon.MouseFilter =
                 Control.MouseFilterEnum.Ignore;
@@ -118,7 +118,7 @@ namespace JustColoring.JustColoringCode
 
             var picker = new ColorPicker
             {
-                Color = JustColorsConfig.ConfiguredColor,
+                Color = JustColorsConfig.DrawingColorThing,
                 EditAlpha = false
             };
 
@@ -135,8 +135,8 @@ namespace JustColoring.JustColoringCode
                 Color color = picker.Color;
 
                 paletteIcon.SelfModulate = color;
-                JustColorsConfig.UpdateColor(color);
-                NetworkIO.SendConfigurationUpdate();
+                JustColorsConfig.DrawingColorThing = color;
+                JustNetworkHelpers.BroadcastConfigurationUpdate();
 
                 popup.QueueFree();
             };
