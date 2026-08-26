@@ -3,3 +3,6 @@ megadot
 upload.sh
 ModUploader*
 BaseLib*
+*.dll
+*.pdb
+**/build/*
