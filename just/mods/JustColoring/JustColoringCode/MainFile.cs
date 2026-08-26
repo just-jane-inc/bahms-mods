@@ -2,7 +2,7 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 using BaseLib.Config;
-using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace JustColoring.JustColoringCode;
 
@@ -21,9 +21,8 @@ public partial class MainFile : Node
         // registers a configuration object to display in the config menu
         ModConfigRegistry.Register(ModId, new JustColorsConfig());
 
-        // adds a node to the slay the spire scene, adding a node in the ready
-        // of this main does not work
-        NGame.Instance?.CallDeferred(Node.MethodName.AddChild, new NetworkIO());
         harmony.PatchAll();
+
+        RunManager.Instance.RunStarted += JustNetworkHelpers.OnRunStarted;
     }
 }
